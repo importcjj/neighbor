@@ -215,6 +215,34 @@ Neighbor - 附近的人
 ]
 ```
 
+#### 性能
+
+```
+$ wrk -d10 -t100 -c400 http://localhost:8080/neighborhood\?lat\=39.9046363143\&lon\=116.4071136987
+Running 10s test @ http://localhost:8080/neighborhood?lat=39.9046363143&lon=116.4071136987
+  100 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   344.57ms   49.32ms 625.15ms   75.07%
+    Req/Sec    12.29      6.15    30.00     59.98%
+  11486 requests in 10.10s, 8.59MB read
+  Socket errors: connect 0, read 1, write 0, timeout 0
+Requests/sec:   1137.41
+Transfer/sec:      0.85MB
+```
+
+```
+wrk -d10 -t100 -c400 http://localhost:8080/neighbors
+Running 10s test @ http://localhost:8080/neighbors
+  100 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   628.25ms   58.07ms 887.54ms   74.10%
+    Req/Sec     8.03      5.74    30.00     77.94%
+  6161 requests in 10.11s, 17.17MB read
+  Socket errors: connect 0, read 77, write 0, timeout 0
+Requests/sec:    609.66
+Transfer/sec:      1.70MB
+```
+
 #### Geohash 精确度误差
 
 |geohash length	|lat bits	|lng bits	|lat error	|lng error	|km error |
